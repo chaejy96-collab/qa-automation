@@ -60,6 +60,15 @@ def test_tapas_login_fail(driver):
     password_input = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[type='password']")))
     password_input.send_keys("notpassword")
 
+    try:
+        iframe = driver.find_element(By.CSS_SELECTOR, "iframe[src*='recaptcha']")
+        driver.switch_to.frame(iframe)
+        driver.find_element(By.CSS_SELECTOR, "#rc-anchor-container")
+        driver.save_screenshot("captcha_detected.png")
+        pytest.skip("CAPTCHA 감지됨 - 테스트 스킵")
+    except NoSuchElementException:
+        driver.switch_to.default_content()
+
     submit_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']")))
     submit_button.click()
 

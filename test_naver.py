@@ -56,3 +56,7 @@ def test_blog_search(driver):
     WebDriverWait(driver, 10).until(EC.title_contains("블로그"))
     assert "블로그" in driver.title, f"테스트 실패! 제목: {driver.title}"
     print("✅ 블로그 탭 이동 테스트 통과!")
+
+    results = driver.find_elements(By.CSS_SELECTOR, "span.sds-comps-text-type-headline1")
+    assert len(results) > 0, "검색 결과가 없습니다!"
+    print(f"✅ 검색 결과 {len(results)}개 확인!")

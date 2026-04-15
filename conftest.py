@@ -15,8 +15,10 @@ def driver():
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-gpu")
-        options.add_argument("--remote-debugging-port=9222")  # ⭐ 핵심
+        options.add_argument("--remote-debugging-port=9222")  # ⭐ 중요
         options.add_argument("--window-size=1920,1080")
+        options.add_argument("--single-process")  # ⭐ 추가
+        options.add_argument("--disable-extensions")  # ⭐ 추가
 
     driver = webdriver.Chrome(options=options)
     yield driver

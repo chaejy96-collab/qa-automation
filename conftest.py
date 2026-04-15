@@ -3,12 +3,10 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-
 @pytest.fixture
 def driver():
     options = Options()
 
-    # CI 환경 대응
     if os.getenv("CI") == "true":
         options.add_argument("--headless=new")
         options.add_argument("--no-sandbox")
@@ -16,5 +14,6 @@ def driver():
         options.add_argument("--window-size=1920,1080")
 
     driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(5)
     yield driver
     driver.quit()

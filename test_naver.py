@@ -7,12 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-@pytest.fixture
-def driver():
-    chromedriver_autoinstaller.install()
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
+
 
 
 def test_naver_search(driver):

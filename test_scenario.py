@@ -7,12 +7,6 @@ from selenium.webdriver.common.keys import Keys
 import chromedriver_autoinstaller
 from selenium.webdriver.support.wait import WebDriverWait
 
-@pytest.fixture
-def driver():
-    chromedriver_autoinstaller.install()
-    driver = webdriver.Chrome()
-    yield driver
-    driver.quit()
 
 def test_naver_search_scenario(driver):
     driver.get("https://www.naver.com")

@@ -20,8 +20,14 @@ jobs:
       run: |
         pip install selenium pytest pytest-html chromedriver-autoinstaller
 
+    # ✅ 여기 추가
+    - name: Chrome 설치
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
     - name: 테스트 실행
       run: |
         pytest --html=report.html
       env:
-          HEADLESS: true
+        HEADLESS: true

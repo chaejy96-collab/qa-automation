@@ -14,10 +14,8 @@ def test_tapas_login(driver):
 
     driver.get("https://tapas.io/")
 
-    login_button = driver.find_element(By.XPATH, '//*[@id="__next"]/div/nav/div/div[1]/div/div/div[2]/a[1]/button')
+    login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div/nav/div/div[1]/div/div/div[2]/a[1]/button')))
     login_button.click()
-
-    wait = WebDriverWait(driver, 15)
 
     email_input = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[type='email']")))
     email_input.send_keys("dktjero@yopmail.com")
@@ -44,13 +42,12 @@ def test_tapas_login(driver):
         assert False, "로그인 실패 - 프로필 이미지를 찾을 수 없음"
 
 def test_tapas_login_fail(driver):
-
     wait = WebDriverWait(driver, 15)
+
     driver.get("https://tapas.io/")
 
     login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div/nav/div/div[1]/div/div/div[2]/a[1]/button')))
     login_button.click()
-
 
     email_input = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[type='email']")))
     email_input.send_keys("dktjero@yopmail.com")

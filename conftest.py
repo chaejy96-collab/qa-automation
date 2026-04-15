@@ -1,14 +1,19 @@
+import pytest
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import pytest
 
 
 @pytest.fixture
 def driver():
     options = Options()
-    options.add_argument("--headless=new")  # ⭐ 핵심
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+
+    # CI 환경 대응
+    if os.getenv("CI") == "true":
+        options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--window-size=1920,1080")
 
     driver = webdriver.Chrome(options=options)
     yield driver

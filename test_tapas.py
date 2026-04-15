@@ -14,7 +14,7 @@ def test_tapas_login(driver):
 
     driver.get("https://tapas.io/")
 
-    login_button = driver.find_element(By.CSS_SELECTOR, "#__next > div > nav > div > div:nth-child(1) > div > div > div.flex.space-x-12 > a:nth-child(1)")
+    login_button = driver.find_element(By.CSS_SELECTOR, "#__next > div > nav > div > div:nth-child(1) > div > div > div.flex.space-x-12 > a:nth-child(1) > button")
     login_button.click()
 
     email_input = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[type='email']")))

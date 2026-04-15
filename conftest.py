@@ -7,13 +7,11 @@ import chromedriver_autoinstaller
 def driver():
     chromedriver_autoinstaller.install()
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless=new")   # ⭐ 핵심
-    chrome_options.add_argument("--no-sandbox")     # ⭐ 필수
-    chrome_options.add_argument("--disable-dev-shm-usage")  # ⭐ 필수
-    chrome_options.add_argument("--window-size=1920,1080")
+    options = Options()
+    options.add_argument("--headless=new")  # 필수
+    options.add_argument("--no-sandbox")    # 필수
+    options.add_argument("--disable-dev-shm-usage")  # 필수
 
-    driver = webdriver.Chrome(options=chrome_options)
-
+    driver = webdriver.Chrome(options=options)
     yield driver
     driver.quit()

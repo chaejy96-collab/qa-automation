@@ -1,11 +1,9 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import chromedriver_autoinstaller
 
 @pytest.fixture
 def driver():
-    chromedriver_autoinstaller.install()
 
     options = Options()
     options.add_argument("--headless=new")  # 필수

@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def driver():
     chromedriver_autoinstaller.install()
 

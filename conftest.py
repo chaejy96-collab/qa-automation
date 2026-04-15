@@ -1,26 +1,25 @@
-import pytest
 import os
-import chromedriver_autoinstaller
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 @pytest.fixture(scope="function")
 def driver():
-    chromedriver_autoinstaller.install()
+    chrome_options = Options()
 
-    options = Options()
+    # 환경변수로 headless 제어
+    if os.getenv("HEADLESS", "false").lower() == "true":
+        print("🤖 Headless 모드")
+        chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+    else:
+        print("🖥️  시각적 테스트 모드")
+        chrome_options.add_argument("--start-maximized")
 
-    # CI 환경에서 필수 옵션들
-    options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--disable-extensions")
-    options.add_argument("--window-size=1920,1080")
-    options.add_argument("--remote-debugging-port=9222")
-
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
     driver.quit()

@@ -1,8 +1,12 @@
 name: QA Automation Test
 
+env:  # 👈 여기에 추가!
+  HEADLESS: true
 on:
   push:
-  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 17 * * *'
 
 jobs:
   test:

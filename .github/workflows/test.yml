@@ -23,3 +23,5 @@ jobs:
     - name: 테스트 실행
       run: |
         pytest --html=report.html
+      env:
+          HEADLESS: true

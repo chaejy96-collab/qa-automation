@@ -1,33 +1,32 @@
-name: QA 자동화 테스트
+name: QA Automation Test
 
 on:
   push:
-    branches: [ main ]
+  pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Python 설치
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
-    - name: 라이브러리 설치
-      run: |
-        pip install selenium pytest pytest-html chromedriver-autoinstaller
+      # 🔥 여기 추가
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
-    # ✅ 여기 추가
-    - name: Chrome 설치
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
 
-    - name: 테스트 실행
-      run: |
-        pytest --html=report.html
-      env:
-        HEADLESS: true
+      - name: Run tests
+        run: |
+          pytest --html=report.html

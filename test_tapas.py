@@ -48,7 +48,7 @@ def test_tapas_login_fail(driver):
     wait = WebDriverWait(driver, 15)
     driver.get("https://tapas.io/")
 
-    login_button = driver.find_element(By.XPATH, '//*[@id="__next"]/div/nav/div/div[1]/div/div/div[2]/a[1]/button')
+    login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="__next"]/div/nav/div/div[1]/div/div/div[2]/a[1]/button')))
     login_button.click()
 
 

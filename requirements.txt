@@ -1,5 +1,0 @@
-pytest
-pytest-html
-selenium
-playwright
-chromedriver-autoinstaller

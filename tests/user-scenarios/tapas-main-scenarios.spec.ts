@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/home.page';
-import { SeriesPage } from '../pages/series.page';
+import { HomePage } from '../../pages/home.page';
+import { SeriesPage } from '../../pages/series.page';
+import testData from '../../data/testData.json';
 
 test.describe('Tapas.io 메인 유저 흐름 E2E 테스트', () => {
   let homePage: HomePage;
@@ -17,7 +18,7 @@ test.describe('Tapas.io 메인 유저 흐름 E2E 테스트', () => {
   });
 
   test('2. 검색 기능 동작 및 검색 결과 이동 검증', async ({ page }) => {
-    await homePage.search('Solo Leveling');
+    await homePage.search(testData.searchKeyword);
     await expect(page).toHaveURL(/.*search.*/);
   });
 

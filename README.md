@@ -1,6 +1,6 @@
 # Tapas Test Automation Project
 
-이 프로젝트는 Tapas 서비스의 핵심 기능(검색, 에피소드 이동, 내비게이션)을 Playwright 기반으로 자동화한 QA 테스트 프로젝트입니다. QA 엔지니어의 관점에서 **유지보수성(Maintainability)**, **신뢰성(Reliability)**, 실제 기능 동작 및 Edge Case 검증을 중심으로 설계했습니다.
+이 프로젝트는 Tapas 서비스의 핵심 기능(검색, 에피소드 이동, 내비게이션)을 Playwright 기반으로 자동화한 QA 테스트 프로젝트입니다. QA 엔지니어의 관점에서 **유지보수성(Maintainability)**, **신뢰성(Reliability)**, **실제 기능 동작 및 Edge Case** 검증을 중심으로 설계했습니다.
 
 ## 🛠 주요 특징
 - **효율적인 자동화 구조**: 페이지 단위로 요소와 동작을 분리하는 POM 구조를 적용하여, 추후 UI 변경 시에도 코드 수정이 간편하도록 유지보수성을 높였습니다.

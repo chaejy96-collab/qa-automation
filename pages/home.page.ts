@@ -12,6 +12,8 @@ export class HomePage extends BasePage {
   }
 
   async clickFirstSeries() {
-    await this.seriesThumbnails.first().click();
+    const firstSeries = this.seriesThumbnails.first();
+    await firstSeries.waitFor({ state: 'visible' });
+    await firstSeries.click();
   }
 }

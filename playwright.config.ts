@@ -6,14 +6,17 @@ dotenv.config();
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
-  retries: 0,
-  workers: undefined,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 1 : 0,
+  workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
     baseURL: process.env.BASE_URL || 'https://tapas.io',
+    actionTimeout: 10_000,
+    navigationTimeout: 20_000,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    video: 'on',
+    video: 'retain-on-failure',
   },
   projects: [
     {

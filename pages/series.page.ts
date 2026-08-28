@@ -25,4 +25,11 @@ export class SeriesPage extends BasePage {
   async getFirstEpisodeTitle(): Promise<string> {
     return await this.episodeListContainer.locator('.info__title').first().innerText();
   }
+
+  async waitForFirstEpisodeTitleToChange(previousTitle: string) {
+    await this.page.waitForFunction(
+      ({ selector, previous }) => document.querySelector(selector)?.textContent?.trim() !== previous,
+      { selector: '.episode-list .info__title, .ep-list .info__title', previous: previousTitle },
+    );
+  }
 }

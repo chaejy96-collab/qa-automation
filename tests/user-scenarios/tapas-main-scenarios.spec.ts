@@ -1,29 +1,17 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from '../../pages/home.page';
-import { SeriesPage } from '../../pages/series.page';
+import { expect, test } from '../fixtures';
 import testData from '../../data/testData.json';
 
 test.describe('Tapas.io 메인 유저 흐름 E2E 테스트', () => {
-  let homePage: HomePage;
-  let seriesPage: SeriesPage;
-
-  test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page);
-    seriesPage = new SeriesPage(page);
-    await homePage.goto('https://tapas.io');
-  });
-
-  test('1. Tapas 메인 접속 및 페이지 정상 로딩 확인', async ({ page }) => {
+  test('홈 페이지를 로드한다', async ({ page, homePage }) => {
     await expect(page).toHaveURL(/tapas\.io/);
+    await expect(homePage.searchInput.first()).toBeVisible();
   });
 
-  test('2. 검색 기능 동작 및 검색 결과 이동 검증', async ({ page }) => {
+  test('검색 결과에서 작품 상세 페이지로 이동한다', async ({ page, homePage }) => {
     await homePage.search(testData.searchKeyword);
-    await expect(page).toHaveURL(/.*search.*/);
-  });
+    await expect(page).toHaveURL(/search/);
 
-  test('3. 작품 클릭 시 상세 페이지 이동 검증', async ({ page }) => {
     await homePage.clickFirstSeries();
-    await expect(page).toHaveURL(/.*\/series\/.*/);
+    await expect(page).toHaveURL(/\/series\//);
   });
 });

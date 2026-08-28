@@ -11,11 +11,19 @@ export class BasePage {
   }
 
   async goto(path: string = '/') {
-    await this.page.goto(path);
+    await this.page.goto(path, { waitUntil: 'domcontentloaded' });
   }
 
   async search(keyword: string) {
-    await this.searchInput.fill(keyword);
-    await this.searchInput.press('Enter');
+    const input = this.searchInput.first();
+    await input.fill(keyword);
+    await input.press('Enter');
+  }
+
+  async dismissCookieBanner() {
+    const acceptButton = this.page.getByRole('button', { name: 'Accept' });
+    if (await acceptButton.isVisible().catch(() => false)) {
+      await acceptButton.click();
+    }
   }
 }

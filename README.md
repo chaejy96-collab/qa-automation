@@ -23,7 +23,7 @@
 
 ## 🧠 AI 활용
 
-본 프로젝트는 Gemini를 활용한 AI-assisted development 방식으로 구현했습니다. 테스트 대상 시나리오와 자동화 범위, 프로젝트 구조 및 POM 적용 방향을 직접 정의하고, Gemini를 활용해 Playwright/TypeScript 코드 구현을 보조받았습니다. 생성된 코드에 대해서는 테스트 실행 및 결과 검토를 통해 QA 관점에서 검증하고 수정했습니다.
+본 프로젝트는 AI를 활용한 AI-assisted development 방식으로 구현했습니다. 테스트 대상 시나리오와 자동화 범위, 프로젝트 구조 및 POM 적용 방향을 직접 정의하고, AI를 활용해 Playwright/TypeScript 코드 구현을 보조받았습니다. 생성된 코드에 대해서는 테스트 실행 및 결과 검토를 통해 QA 관점에서 검증하고 수정했습니다.
 
 ## 🛠 실행 방법
 
